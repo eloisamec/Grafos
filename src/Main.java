@@ -1,13 +1,21 @@
 import java.util.HashMap;
 
+import Grafo.Grafo;
+import Grafo.Vertice;
+
 public class Main 
 {
 
 	public static void main(String[] args)
 	{
-		HashMap<String, Integer>bla = new HashMap<String, Integer>();
-		bla.put("Cinco", 5);
+		Grafo grafo = new Grafo(true);
+		grafo.insereVertice(new Vertice("Floripa"));
+		grafo.insereVertice(new Vertice("Curitiba"));
+		grafo.insereVertice(new Vertice("Floripa"));
+		grafo.insereVertice(new Vertice("Poa"));
+		grafo.insereVertice(new Vertice("SP"));
 		
-		System.out.println(bla.get("Cinco"));
+		for (Vertice v : grafo.getGrafo().values())
+			System.out.println(v);
 	}
 }
