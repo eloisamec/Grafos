@@ -10,7 +10,7 @@ public class Main
 	{
 		Grafo grafo = new Grafo(true);
 		grafo.adicionaVertice(new Vertice("Floripa"));
-		grafo.adcionaVertice(new Vertice("Curitiba"));
+		grafo.adicionaVertice(new Vertice("Curitiba"));
 		grafo.adicionaVertice(new Vertice("Floripa"));
 		grafo.adicionaVertice(new Vertice("Poa"));
 		grafo.adicionaVertice(new Vertice("SP"));

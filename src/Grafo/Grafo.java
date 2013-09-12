@@ -22,16 +22,16 @@ public class Grafo {
 	 */
 	public void adicionaVertice(Vertice vertice) {
 		if (grafo.containsKey(vertice.getVertice()))
-			// Testa se o v�rtice j� possui uma chave igual
-			System.out.println("Valor de v�rtice j� existente no grafo! -> "
+			// Testa se o vertice ja possui uma chave igual
+			System.out.println("Valor de vertice ja existente no grafo! -> "
 					+ vertice.toString());
-		else { // Caso n�o tenha, adiciona um novo v�rtice ao grafo
+		else { // Caso nao tenha, adiciona um novo vertice ao grafo
 			grafo.put(vertice.getVertice(), vertice);
 		}
 	}
 
 	/**
-	 * este método vai criar uma nova aresta conforme os parametos passados
+	 * este metodo vai criar uma nova aresta conforme os parametos passados
 	 * 
 	 * @param fonte vertice fonte
 	 * @param destino vertice destino
@@ -40,36 +40,40 @@ public class Grafo {
 	public void conecta(Vertice fonte, Vertice destino, int peso) {
 		if (grafo.containsKey(fonte.getVertice())
 				&& grafo.containsKey(destino.getVertice())) {
-			// Verifica se os v�rtices est�o inseridos no grafo
+			// Verifica se os vertices estao inseridos no grafo
 			if (arestas.containsKey(fonte + "-" + destino))
-				// Verifica se a aresta j� existe
+				// Verifica se a aresta ja existe
 				System.out.println(fonte.toString() + " e "
-						+ destino.toString() + "j� est�o conectados!");
+						+ destino.toString() + "ja estao conectados!");
 			else
-				// Chave ganha nome dos v�rtices fonte-destino
+				// Chave ganha nome dos vertices fonte-destino
 				arestas.put(fonte + "-" + destino, new Aresta(fonte, destino,
 						peso));
 		} else {
-			// Fonte n�o � v�rtice do grafo
+			// Fonte nao e vertice do grafo
 			if (grafo.containsKey(destino.getVertice()))
-				System.out.println(fonte + " n�o � v�rtice do grafo!");
+				System.out.println(fonte + " nao e vertice do grafo!");
 			else {
-				// Destino n�o � v�rtice do grafo
+				// Destino nao e vertice do grafo
 				if (grafo.containsKey(fonte.getVertice()))
-					System.out.println(destino + " n�o � v�rtice do grafo!");
+					System.out.println(destino + " nao e vertice do grafo!");
 				else
-					// Ambos v�rtices n�o pertencem ao grafo
+					// Ambos vertices nao pertencem ao grafo
 					System.out.println(fonte + " e " + destino
-							+ "n�o s�o v�rtices do grafo!");
+							+ "nao sao vertices do grafo!");
 			}
 		}
 	}
 
 	/**
-	 * TODO remove o vertice do grafo e todas as aresta conetcatas com ele
+	 * Remove o vertice do grafo e todas as aresta conectadas a ele
 	 */
 	public void removeVertice(Vertice v) {
-
+		if (grafo.containsValue(v)){
+			grafo.remove(v);
+		}
+		else 
+		
 	}
 
 	/**
