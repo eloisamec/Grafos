@@ -80,10 +80,10 @@ public class Grafo {
 	}
 
 	/**
-	 * TODO retorna a ordem do grafo (numero de vertices)
+	 * retorna a ordem do grafo (numero de vertices)
 	 */
 	public int ordem() {
-		return 0;
+		return this.grafo.size();
 	}
 
 	/**
