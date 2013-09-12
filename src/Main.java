@@ -9,11 +9,11 @@ public class Main
 	public static void main(String[] args)
 	{
 		Grafo grafo = new Grafo(true);
-		grafo.insereVertice(new Vertice("Floripa"));
-		grafo.insereVertice(new Vertice("Curitiba"));
-		grafo.insereVertice(new Vertice("Floripa"));
-		grafo.insereVertice(new Vertice("Poa"));
-		grafo.insereVertice(new Vertice("SP"));
+		grafo.adicionaVertice(new Vertice("Floripa"));
+		grafo.adcionaVertice(new Vertice("Curitiba"));
+		grafo.adicionaVertice(new Vertice("Floripa"));
+		grafo.adicionaVertice(new Vertice("Poa"));
+		grafo.adicionaVertice(new Vertice("SP"));
 		
 		for (Vertice v : grafo.getGrafo().values())
 			System.out.println(v);
