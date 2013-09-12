@@ -2,8 +2,12 @@ package Grafo;
 
 import java.util.HashMap;
 
+/**
+ * classe que representa um grafo generico
+ */
 public class Grafo {
-	private boolean direcionado;
+	
+	private boolean direcionado; // true se for um grafo direcionado
 	private HashMap<String, Vertice> grafo;
 	private HashMap<String, Aresta> arestas;
 
@@ -13,42 +17,102 @@ public class Grafo {
 		this.setDirecionado(direcionado);
 	}
 
-	public void insereVertice(Vertice vertice) {
+	/**
+	 * insere um vertice no grafo
+	 */
+	public void adicionaVertice(Vertice vertice) {
 		if (grafo.containsKey(vertice.getVertice()))
-			// Testa se o vértice já possui uma chave igual
-			System.out.println("Valor de vértice já existente no grafo! -> "
+			// Testa se o vï¿½rtice jï¿½ possui uma chave igual
+			System.out.println("Valor de vï¿½rtice jï¿½ existente no grafo! -> "
 					+ vertice.toString());
-		else { // Caso não tenha, adiciona um novo vértice ao grafo
+		else { // Caso nï¿½o tenha, adiciona um novo vï¿½rtice ao grafo
 			grafo.put(vertice.getVertice(), vertice);
 		}
 	}
 
-	public void insereAresta(Vertice fonte, Vertice destino, int peso) {
+	/**
+	 * este mÃ©todo vai criar uma nova aresta conforme os parametos passados
+	 * 
+	 * @param fonte vertice fonte
+	 * @param destino vertice destino
+	 * @param peso  o peso da aresta
+	 */
+	public void conecta(Vertice fonte, Vertice destino, int peso) {
 		if (grafo.containsKey(fonte.getVertice())
 				&& grafo.containsKey(destino.getVertice())) {
-			// Verifica se os vértices estão inseridos no grafo
+			// Verifica se os vï¿½rtices estï¿½o inseridos no grafo
 			if (arestas.containsKey(fonte + "-" + destino))
-				// Verifica se a aresta já existe
+				// Verifica se a aresta jï¿½ existe
 				System.out.println(fonte.toString() + " e "
-						+ destino.toString() + "já estão conectados!");
+						+ destino.toString() + "jï¿½ estï¿½o conectados!");
 			else
-				// Chave ganha nome dos vértices fonte-destino
+				// Chave ganha nome dos vï¿½rtices fonte-destino
 				arestas.put(fonte + "-" + destino, new Aresta(fonte, destino,
 						peso));
 		} else {
-			// Fonte não é vértice do grafo
+			// Fonte nï¿½o ï¿½ vï¿½rtice do grafo
 			if (grafo.containsKey(destino.getVertice()))
-				System.out.println(fonte + " não é vértice do grafo!");
+				System.out.println(fonte + " nï¿½o ï¿½ vï¿½rtice do grafo!");
 			else {
-				// Destino não é vértice do grafo
+				// Destino nï¿½o ï¿½ vï¿½rtice do grafo
 				if (grafo.containsKey(fonte.getVertice()))
-					System.out.println(destino + " não é vértice do grafo!");
+					System.out.println(destino + " nï¿½o ï¿½ vï¿½rtice do grafo!");
 				else
-					// Ambos vértices não pertencem ao grafo
+					// Ambos vï¿½rtices nï¿½o pertencem ao grafo
 					System.out.println(fonte + " e " + destino
-							+ "não são vértices do grafo!");
+							+ "nï¿½o sï¿½o vï¿½rtices do grafo!");
 			}
 		}
+	}
+
+	/**
+	 * TODO remove o vertice do grafo e todas as aresta conetcatas com ele
+	 */
+	public void removeVertice(Vertice v) {
+
+	}
+
+	/**
+	 * TODO remove a aresta entre os vertices v1 e v2
+	 */
+	public void desconecta(Vertice v1, Vertice v2) {
+
+	}
+
+	/**
+	 * TODO retorna a ordem do grafo (numero de vertices)
+	 */
+	public int ordem() {
+		return 0;
+	}
+
+	/**
+	 * TODO retorna um conjunto com os vertice do grafo qual tipo de retorno?
+	 * lista, hashmap?..
+	 */
+	public void getVertices() {
+
+	}
+
+	/**
+	 * TODO retorna um vertice qualquer do grafo
+	 */
+	public Vertice getUmVercice() {
+		return null;
+	}
+
+	/**
+	 * TODO retorna os vertices adjacentes do verttice v do grafo
+	 */
+	public void adjacentes(Vertice v) {
+
+	}
+
+	/**
+	 * TODO retorna o numero de vertices adjacentes do verttice v do grafo
+	 */
+	public int grauAadjacentes(Vertice v) {
+		return 0;
 	}
 
 	public String toString() {
