@@ -7,26 +7,33 @@ import java.util.HashMap;
  */
 public class Grafo {
 	
-	private boolean direcionado; // true se for um grafo direcionado
-	private HashMap<String, Vertice> grafo;
+	private HashMap<String, Vertice> vertices;
 	private HashMap<String, Aresta> arestas;
 
 	public Grafo(boolean direcionado) {
-		grafo = new HashMap<String, Vertice>();
+		vertices = new HashMap<String, Vertice>();
 		setArestas(new HashMap<String, Aresta>());
-		this.setDirecionado(direcionado);
 	}
 
 	/**
-	 * insere um vertice no grafo
+	 * Insere um vertice no grafo
 	 */
 	public void adicionaVertice(Vertice vertice) {
-		if (grafo.containsKey(vertice.getVertice()))
+		if (vertices.containsKey(vertice.getVertice()))
 			// Testa se o vertice ja possui uma chave igual
 			System.out.println("Valor de vertice ja existente no grafo! -> "
 					+ vertice.toString());
 		else { // Caso nao tenha, adiciona um novo vertice ao grafo
-			grafo.put(vertice.getVertice(), vertice);
+			vertices.put(vertice.getVertice(), vertice);
+		}
+	}
+	
+	/**
+	 * Remove o vertice do grafo e todas as aresta conectadas a ele
+	 */
+	public void removeVertice(Vertice v) {
+		if (vertices.containsValue(v)){
+			vertices.remove(v);
 		}
 	}
 
@@ -37,9 +44,9 @@ public class Grafo {
 	 * @param destino vertice destino
 	 * @param peso  o peso da aresta
 	 */
-	public void conecta(Vertice fonte, Vertice destino, int peso) {
-		if (grafo.containsKey(fonte.getVertice())
-				&& grafo.containsKey(destino.getVertice())) {
+	public void adicionaAresta(Vertice fonte, Vertice destino, int peso, boolean direcionada) {
+		if (vertices.containsKey(fonte.getVertice())
+				&& vertices.containsKey(destino.getVertice())) {
 			// Verifica se os vertices estao inseridos no grafo
 			if (arestas.containsKey(fonte + "-" + destino))
 				// Verifica se a aresta ja existe
@@ -48,14 +55,14 @@ public class Grafo {
 			else
 				// Chave ganha nome dos vertices fonte-destino
 				arestas.put(fonte + "-" + destino, new Aresta(fonte, destino,
-						peso));
+						peso, direcionada));
 		} else {
 			// Fonte nao e vertice do grafo
-			if (grafo.containsKey(destino.getVertice()))
+			if (vertices.containsKey(destino.getVertice()))
 				System.out.println(fonte + " nao e vertice do grafo!");
 			else {
 				// Destino nao e vertice do grafo
-				if (grafo.containsKey(fonte.getVertice()))
+				if (vertices.containsKey(fonte.getVertice()))
 					System.out.println(destino + " nao e vertice do grafo!");
 				else
 					// Ambos vertices nao pertencem ao grafo
@@ -65,16 +72,7 @@ public class Grafo {
 		}
 	}
 
-	/**
-	 * Remove o vertice do grafo e todas as aresta conectadas a ele
-	 */
-	public void removeVertice(Vertice v) {
-		if (grafo.containsValue(v)){
-			grafo.remove(v);
-		}
-		else 
-		
-	}
+	
 
 	/**
 	 * TODO remove a aresta entre os vertices v1 e v2
@@ -87,11 +85,11 @@ public class Grafo {
 	 * retorna a ordem do grafo (numero de vertices)
 	 */
 	public int ordem() {
-		return this.grafo.size();
+		return this.vertices.size();
 	}
 
 	/**
-	 * TODO retorna um conjunto com os vertice do grafo qual tipo de retorno?
+	 * TODO retorna um conjunto com os vertices do grafo qual tipo de retorno?
 	 * lista, hashmap?..
 	 */
 	public void getVertices() {
@@ -101,7 +99,7 @@ public class Grafo {
 	/**
 	 * TODO retorna um vertice qualquer do grafo
 	 */
-	public Vertice getUmVercice() {
+	public Vertice getUmVertice() {
 		return null;
 	}
 
@@ -120,19 +118,11 @@ public class Grafo {
 	}
 
 	public String toString() {
-		return grafo.toString();
+		return vertices.toString();
 	}
 
 	public HashMap<String, Vertice> getGrafo() {
-		return grafo;
-	}
-
-	public boolean isDirecionado() {
-		return direcionado;
-	}
-
-	public void setDirecionado(boolean direcionado) {
-		this.direcionado = direcionado;
+		return vertices;
 	}
 
 	public HashMap<String, Aresta> getArestas() {
