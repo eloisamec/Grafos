@@ -17,33 +17,33 @@ public class Vertice {
 	public void adicionaAresta(Aresta aresta) {
 		//verifica se o vertice e fonte ou destino da aresta
 		if (this.nomeVertice == aresta.getFonte().getVertice()){
-			arestasSaida.put(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice(), aresta);
+			arestasSaida.put(aresta.getDestino().getVertice(), aresta);
 			// se o grafo for nao orientado, tem que adicionar tanto nas arestas que chegam quanto nas arestas que saem
 			if (!aresta.isDirecionada())
-				arestasEntrada.put(aresta.getFonte() + "-" + aresta.getDestino(), aresta);
+				arestasEntrada.put(aresta.getDestino().getVertice(), aresta);
 		}
 		
 		// Similar ao de cima
 		if (this.nomeVertice == aresta.getDestino().getVertice()) {
-			arestasEntrada.put(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice(), aresta); 
+			arestasEntrada.put(aresta.getFonte().getVertice(), aresta); 
 			if (!aresta.isDirecionada())
-				arestasSaida.put(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice(), aresta);
+				arestasSaida.put(aresta.getFonte().getVertice(), aresta);
 		}
 	}
 	
 	public void removeAresta(Aresta aresta) {
 		// Verifica se o vertice e fonte ou destino da aresta
 		if (this.nomeVertice == aresta.getFonte().getVertice()) {
-			arestasSaida.remove(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice());
+			arestasSaida.remove(aresta.getDestino().getVertice());
 			// se a aresta for nao orientada, e preciso tirar dos dois conjuntos
 			if (!aresta.isDirecionada())
-				arestasEntrada.remove(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice());
+				arestasEntrada.remove(aresta.getDestino().getVertice());
 		}
 		
 		if (this.nomeVertice == aresta.getDestino().getVertice()) {
-			arestasEntrada.remove(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice());
+			arestasEntrada.remove(aresta.getFonte().getVertice());
 			if (!aresta.isDirecionada())
-				arestasSaida.remove(aresta.getFonte().getVertice() + "-" + aresta.getDestino().getVertice());
+				arestasSaida.remove(aresta.getFonte().getVertice());
 			
 		}
 	}
