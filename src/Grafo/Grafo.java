@@ -6,7 +6,7 @@ import java.util.HashMap;
  * classe que representa um grafo generico
  */
 public class Grafo {
-	
+
 	private HashMap<String, Vertice> vertices;
 	private HashMap<String, Aresta> arestas;
 
@@ -27,12 +27,12 @@ public class Grafo {
 			vertices.put(vertice.getVertice(), vertice);
 		}
 	}
-	
+
 	/**
 	 * Remove o vertice do grafo e todas as aresta conectadas a ele
 	 */
 	public void removeVertice(Vertice v) {
-		if (vertices.containsValue(v)){
+		if (vertices.containsValue(v)) {
 			vertices.remove(v);
 		}
 	}
@@ -40,11 +40,15 @@ public class Grafo {
 	/**
 	 * este metodo vai criar uma nova aresta conforme os parametos passados
 	 * 
-	 * @param fonte vertice fonte
-	 * @param destino vertice destino
-	 * @param peso  o peso da aresta
+	 * @param fonte
+	 *            vertice fonte
+	 * @param destino
+	 *            vertice destino
+	 * @param peso
+	 *            o peso da aresta
 	 */
-	public void adicionaAresta(Vertice fonte, Vertice destino, int peso, boolean direcionada) {
+	public void adicionaAresta(Vertice fonte, Vertice destino, int peso,
+			boolean direcionada) {
 		if (vertices.containsKey(fonte.getVertice())
 				&& vertices.containsKey(destino.getVertice())) {
 			// Verifica se os vertices estao inseridos no grafo
@@ -72,12 +76,12 @@ public class Grafo {
 		}
 	}
 
-	
-
 	/**
 	 * TODO remove a aresta entre os vertices v1 e v2
 	 */
 	public void desconecta(Vertice v1, Vertice v2) {
+		vertices.get(v1).removeAresta(v1, v2);
+		vertices.get(v2).removeAresta(v1, v2);
 
 	}
 
