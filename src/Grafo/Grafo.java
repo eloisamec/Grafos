@@ -31,13 +31,13 @@ public class Grafo {
 	}
 
 	public void conecta(Vertice v1, Vertice v2, Aresta aresta) {
-		vertices.get(vertices.indexOf(v1)).adicionaAresta(aresta, v2);
-		vertices.get(vertices.indexOf(v2)).adicionaAresta(aresta, v1);
+		v1.adicionaAresta(aresta, v2);
+		v2.adicionaAresta(aresta, v1);
 	}
 
 	public void desconecta(Vertice v1, Vertice v2) {
-		vertices.get(vertices.indexOf(v1)).removeAresta(v2);
-		vertices.get(vertices.indexOf(v2)).removeAresta(v1);
+		v1.removeAresta(v2);
+		v2.removeAresta(v1);
 	}
 
 	public int ordem() {
