@@ -2,6 +2,7 @@ import Grafo.Aresta;
 import Grafo.Grafo;
 import Grafo.Vertice;
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -17,21 +18,27 @@ public class Main {
 		grafo.adicionaVertice(v3);
 		grafo.adicionaVertice(v4);
 		grafo.conecta(v1, v2, new Aresta(1));
-		grafo.conecta(v1, v4, new Aresta(3));
+		grafo.conecta(v1, v3, new Aresta(5));
+		grafo.conecta(v2, v4, new Aresta(8));
+		grafo.conecta(v3, v4, new Aresta(2));
 		System.out.printf("Adjacentes de Floripa: %s Grau: %s \n", grafo
 				.adjacentes(v1).toString(), grafo.grauAdjacentes(v1));
 
-		grafo.desconecta(v1, v2);
+		//grafo.desconecta(v1, v2);
 		System.out.printf("Adjacentes de Floripa: %s Grau: %s \n", grafo
 				.adjacentes(v1).toString(), grafo.grauAdjacentes(v1));
 
 		System.out.println(grafo.ordem());
 		System.out.println(grafo.getGrafo().toString());
 
-		grafo.removeVertice(v3);
+		//grafo.removeVertice(v3);
 		System.out.println(grafo.ordem());
 		System.out.println(grafo.getGrafo().toString());
 
 		System.out.println(grafo.umVertice().getNomeVertice());
+		
+		Dijkstra dij = new Dijkstra(grafo);
+		System.out.println("caminho de custo minimo entre Flops e SP: " + dij.caminhoCustoMinimo(v1, v4));
+		
 	}
 }

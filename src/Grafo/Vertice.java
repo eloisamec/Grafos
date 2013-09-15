@@ -14,6 +14,7 @@ public class Vertice {
 
 	public Vertice(String nome) {
 		nomeVertice = nome;
+		dados = "";
 	}
 
 	public void adicionaAresta(Aresta aresta, Vertice destino) {
