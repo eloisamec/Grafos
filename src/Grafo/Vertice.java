@@ -18,8 +18,12 @@ public class Vertice {
 	}
 
 	public void adicionaAresta(Aresta aresta, Vertice destino) {
-		if (!adjacentes.containsKey(destino))
+		if (!Grafo.exists(destino))
+			System.out.println("Vertice não mapeado.");
+		else if (!adjacentes.containsKey(destino))
 			adjacentes.put(destino, aresta);
+		else
+			System.out.println("Aresta já existe.");
 	}
 
 	public void removeAresta(Vertice vertice) {

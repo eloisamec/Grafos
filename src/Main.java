@@ -18,15 +18,15 @@ public class Main {
 		grafo.adicionaVertice(v3);
 		grafo.adicionaVertice(v4);
 		grafo.conecta(v1, v2, new Aresta(1));
-		grafo.conecta(v1, v3, new Aresta(5));
+		grafo.conecta(v1, v3, new Aresta(15));
 		grafo.conecta(v2, v4, new Aresta(8));
 		grafo.conecta(v3, v4, new Aresta(2));
 		System.out.printf("Adjacentes de Floripa: %s Grau: %s \n", grafo
-				.adjacentes(v1).toString(), grafo.grauAdjacentes(v1));
+				.adjacentes(v1).toString(), grafo.grau(v1));
 
 		//grafo.desconecta(v1, v2);
 		System.out.printf("Adjacentes de Floripa: %s Grau: %s \n", grafo
-				.adjacentes(v1).toString(), grafo.grauAdjacentes(v1));
+				.adjacentes(v1).toString(), grafo.grau(v1));
 
 		System.out.println(grafo.ordem());
 		System.out.println(grafo.getGrafo().toString());
