@@ -79,7 +79,7 @@ public class Main {
 		//System.out.println("É completo? " + grafo.isCompleto());
 		//System.out.println("FechoTransitivo? " + grafo.fechoTransitivo(canasvieiras).toString());
 		//grafo.desconecta(canasvieiras, cacupe);
-		grafo.desconecta(cacupe, canasvieiras);
+		//grafo.desconecta(cacupe, jurere);
 		System.out.println("É regular? " + grafo.isRegular());
 		System.out.println("É completo? " + grafo.isCompleto());
 		//System.out.println("FechoTransitivo? " + grafo.fechoTransitivo(trindade).toString());
@@ -87,15 +87,15 @@ public class Main {
 		//System.out.println("FechoTransitivo? " + grafo.fechoTransitivo(canasvieiras).toString());
 		//System.out.println("É conexo? " + grafo.isConexo());
 		//grafo.desconecta(agronomica, cacupe);
-		//System.out.println("É conexo? " + grafo.isConexo());
+		System.out.println("É conexo? " + grafo.isConexo());
 		//grafo.conecta(agronomica, cacupe, new Aresta(4));
 		//System.out.println("É árvore? " + grafo.isArvore());
 		//grafo.desconecta(trindade, agronomica);
 		//grafo.desconecta(jurere, canasvieiras);
-		//System.out.println("É arvore? " + grafo.isArvore());
+		System.out.println("É arvore? " + grafo.isArvore());
 		
-		Dijkstra dij = new Dijkstra(grafo);
-		System.out.println("caminho de custo minimo entre aeroporto e cacupé: " + dij.caminhoCustoMinimo(canasvieiras, cacupe));
+		//Dijkstra dij = new Dijkstra(grafo);
+		//System.out.println("caminho de custo minimo entre aeroporto e cacupé: " + dij.caminhoCustoMinimo(canasvieiras, cacupe));
 		
 	}
 }

@@ -35,13 +35,22 @@ public class Grafo {
 	}
 
 	public void conecta(Vertice v1, Vertice v2, Aresta aresta) {
-		v1.adicionaAresta(aresta, v2);
-		v2.adicionaAresta(aresta, v1);
+		if (!v1.getAdjacentes().containsKey(v2)){
+			v1.adicionaAresta(aresta, v2);
+			v2.adicionaAresta(aresta, v1);	
+		}
+		else
+			System.out.println("Aresta " + v1.toString() + "-" + v2.toString() + "já existe.");
+		
 	}
 
 	public void desconecta(Vertice v1, Vertice v2) {
-		v1.removeAresta(v2);
-		v2.removeAresta(v1);
+		if (v1.getAdjacentes().containsKey(v2)) {
+			v1.removeAresta(v2);
+			v2.removeAresta(v1);
+		}
+		else 
+			System.out.println("Não é possível remover aresta inexistente.");
 	}
 
 	public int ordem() {
@@ -120,24 +129,23 @@ public class Grafo {
 	public boolean isArvore() {
 		Vertice v = umVertice();
 		visitadosArvore = new ArrayList<Vertice>();
-		return isConexo() && !haCiclo(v, v, v);
+		return (isConexo() && !haCiclo(v, v, v));
 	}
 
 	private boolean haCiclo(Vertice v, Vertice vAtual, Vertice vAnterior) {
-		if (visitadosArvore.contains(vAtual)){
-			return (vAtual == v);
-		}
-		
+		if (visitadosArvore.contains(vAtual))
+			return vAtual == v;
 		visitadosArvore.add(vAtual);
+		
 		for (Vertice vAdj : adjacentes(v)) {
-			if (vAdj != vAnterior) {
+			if (vAdj != vAnterior)
 				if (haCiclo(v, vAdj, vAtual))
 					return true;
-			}
 		}
-		visitadosArvore.remove(vAtual);
+		visitadosArvore.remove(vAnterior);
 		return false;
 	}
+	
 	public String toString() {
 		return vertices.toString();
 	}
