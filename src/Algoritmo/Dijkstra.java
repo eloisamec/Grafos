@@ -1,3 +1,4 @@
+package Algoritmo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,7 +41,7 @@ public class Dijkstra {
 			pesoVertice = vertices.get(auxVertice);
 			for (int i = 0; i < arestas.size(); i++) {
 				peso = arestas.get(adjacentes[i]).getPeso();
-				System.out.println("adj: " + vertices.get((Vertice)adjacentes[i]));
+				//System.out.println("adj: " + vertices.get((Vertice)adjacentes[i]));
 
 				if ((pesoVertice + peso) < vertices.get((Vertice)adjacentes[i])) {
 					vertices.put((Vertice) adjacentes[i], pesoVertice + peso);

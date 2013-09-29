@@ -74,7 +74,7 @@ public class Grafo {
 		return v.getAdjacentes().size();
 	}
 
-	public boolean isRegular() {
+	private boolean isRegular() {
 
 		int grau = grau(vertices.get(0));
 		int grauTestado;
@@ -86,7 +86,7 @@ public class Grafo {
 		return true;
 	}
 	
-	public boolean isCompleto() {
+	private boolean isCompleto() {
 		
 		int n =  ordem() - 1;
 		for (Vertice v : vertices) {
@@ -96,7 +96,7 @@ public class Grafo {
 		return true;
 	}
 	
-	public ArrayList<Vertice> fechoTransitivo(Vertice v) {
+	private ArrayList<Vertice> fechoTransitivo(Vertice v) {
 		fechoTransitivo =  new ArrayList<Vertice>();
 		jaVisitados =  new ArrayList<Vertice>();
 		return procuraFechoTransitivo(v);
@@ -112,7 +112,8 @@ public class Grafo {
 		}
 		return fechoTransitivo;
 	}
-	public boolean isConexo() {
+	
+	private boolean isConexo() {
 		
 		boolean valorVerdade = false;
 		for (Vertice v : vertices) {
@@ -126,7 +127,7 @@ public class Grafo {
 		return valorVerdade;
 	}
 	
-	public boolean isArvore() {
+	private boolean isArvore() {
 		Vertice v = umVertice();
 		visitadosArvore = new ArrayList<Vertice>();
 		return (isConexo() && !haCiclo(v, v, v));
@@ -148,6 +149,27 @@ public class Grafo {
 	
 	public String toString() {
 		return vertices.toString();
+	}
+	
+	public String toString_info() 
+	{
+		String ret = "";
+		ret += "Grafo\n";
+		ret += "Vértices: \n";
+		for ( Vertice v : vertices) ret += "\t" + v + "\n";
+		ret += "Arestas: \n";
+		for ( Vertice v : vertices ) ret += "\t" + v + " -> " + adjacentes(v).toString() + "\n";
+		ret += "Ordem: \n" + "\t" + ordem() + "\n";
+		ret += "Grau:  \n";
+		for ( Vertice v : vertices) ret += "\t" + v + " -> "+ grau(v) + "\n";
+		ret += "Regular: \n" + "\t" + isRegular() + "\n";
+		ret += "Completo: \n" + "\t" + isCompleto() + "\n";
+		ret += "Conexo: \n" + "\t" + isConexo() + "\n";
+		ret += "Arvore: \n" + "\t" + isArvore() + "\n";
+		ret += "Fecho Transitivo: \n";
+		for ( Vertice v : vertices ) ret += "\t" + v + " -> " + fechoTransitivo(v).toString() + "\n";
+		
+		return ret;
 	}
 	
 	public static boolean exists(Vertice v) {
