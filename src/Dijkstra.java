@@ -20,7 +20,7 @@ public class Dijkstra {
 	}
 
 	public int caminhoCustoMinimo(Vertice inicial, Vertice destino) {
-		grafoVertices = grafo.getGrafo();
+		grafoVertices = grafo.vertices();
 		for (int i = 0; i < grafo.ordem(); i++) { // inicializacao da lista
 			vertices.put(grafoVertices.get(i), Integer.MAX_VALUE);
 		}

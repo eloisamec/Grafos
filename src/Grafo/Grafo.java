@@ -10,7 +10,7 @@ import java.util.Set;
 public class Grafo {
 
 	private static ArrayList<Vertice> vertices;
-
+	private ArrayList<Vertice> fechoTransitivo, jaVisitados, visitadosArvore;
 	public Grafo() {
 		vertices = new ArrayList<Vertice>();
 	}
@@ -27,6 +27,8 @@ public class Grafo {
 	public void removeVertice(Vertice vertice) {
 		if (vertices.contains(vertice)) {
 			vertices.remove(vertice);
+			for (Vertice vAdj : vertice.getAdjacentes().keySet())
+				vertice.removeAresta(vAdj);
 		}
 		System.out.println("Valor de vertice inválido! -> "
 				+ vertice.toString());
@@ -46,7 +48,7 @@ public class Grafo {
 		return vertices.size();
 	}
 
-	public ArrayList<Vertice> getGrafo() {
+	public ArrayList<Vertice> vertices() {
 		return vertices;
 	}
 
@@ -77,7 +79,7 @@ public class Grafo {
 	
 	public boolean isCompleto() {
 		
-		int n =  ordem() -1;
+		int n =  ordem() - 1;
 		for (Vertice v : vertices) {
 			if (grau(v) != n)
 				return false;
@@ -86,43 +88,54 @@ public class Grafo {
 	}
 	
 	public ArrayList<Vertice> fechoTransitivo(Vertice v) {
-		ArrayList<Vertice> jaVisitados = new ArrayList<Vertice>();
-		return procuraFechoTransitivo(v, jaVisitados);
+		fechoTransitivo =  new ArrayList<Vertice>();
+		jaVisitados =  new ArrayList<Vertice>();
+		return procuraFechoTransitivo(v);
 	}
 	
-	public ArrayList<Vertice> procuraFechoTransitivo(Vertice v, ArrayList<Vertice> jaVisitados) {
-		ArrayList<Vertice> fechoTransitivo = new ArrayList<Vertice>();
+	private ArrayList<Vertice> procuraFechoTransitivo(Vertice v) {
 		jaVisitados.add(v);
 		for (Vertice vAdj : adjacentes(v)) {
 			if (!jaVisitados.contains(vAdj))
-				fechoTransitivo = procuraFechoTransitivo(vAdj, jaVisitados);
+				procuraFechoTransitivo(vAdj);
+			if (!fechoTransitivo.contains(vAdj))
+				fechoTransitivo.add(vAdj);
 		}
 		return fechoTransitivo;
 	}
 	public boolean isConexo() {
-	
-		return vertices.equals(fechoTransitivo(umVertice()));
+		
+		boolean valorVerdade = false;
+		for (Vertice v : vertices) {
+			if (fechoTransitivo(v).size() == ordem())
+				valorVerdade = true;
+			else {
+				valorVerdade = false;
+				break;
+			}
+		}
+		return valorVerdade;
 	}
 	
 	public boolean isArvore() {
-		
 		Vertice v = umVertice();
-		ArrayList<Vertice> vertice = new ArrayList<Vertice>();
-		return isConexo() && haCicloCom(v, v, v, vertice);
+		visitadosArvore = new ArrayList<Vertice>();
+		return isConexo() && !haCiclo(v, v, v);
 	}
 
-	public boolean haCicloCom(Vertice v, Vertice vAtual, Vertice vAnterior, ArrayList<Vertice> jaVisitados) {
-		if (jaVisitados.contains(vAtual))
-			return true;
+	private boolean haCiclo(Vertice v, Vertice vAtual, Vertice vAnterior) {
+		if (visitadosArvore.contains(vAtual)){
+			return (vAtual == v);
+		}
 		
-		jaVisitados.add(vAtual);
+		visitadosArvore.add(vAtual);
 		for (Vertice vAdj : adjacentes(v)) {
 			if (vAdj != vAnterior) {
-				if (haCicloCom(v, vAdj, vAtual, jaVisitados))
+				if (haCiclo(v, vAdj, vAtual))
 					return true;
 			}
 		}
-		jaVisitados.remove(vAtual);
+		visitadosArvore.remove(vAtual);
 		return false;
 	}
 	public String toString() {
