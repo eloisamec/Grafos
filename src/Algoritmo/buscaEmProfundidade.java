@@ -3,13 +3,13 @@ package Algoritmo;
 import Grafo.Grafo;
 import Grafo.Vertice;
 
-public class Profundidade {
+public class buscaEmProfundidade {
 	
 	private boolean[] marcados;
 	private int count;
 	private Grafo g;
 	
-	public Profundidade (Grafo g, Vertice v) {
+	public buscaEmProfundidade (Grafo g, Vertice v) {
 		this.g = g;
 		marcados = new boolean[g.ordem()];
 		dfs(g, v);

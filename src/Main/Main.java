@@ -1,6 +1,6 @@
 package Main;
 
-import Algoritmo.Profundidade;
+import Algoritmo.buscaEmProfundidade;
 import Grafo.Aresta;
 import Grafo.Grafo;
 import Grafo.Vertice;
@@ -10,6 +10,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		Grafo grafo = new Grafo();
+		// Exemplos de grafos
+		// Grafo Completo
 		System.out.println("Exemplo de Grafo Completo: ");
 		Vertice cacupe = new Vertice("Cacupé");
 		Vertice jurere = new Vertice("Jurerê");
@@ -24,7 +26,7 @@ public class Main {
 		grafo.conecta(jurere, canasvieiras, new Aresta(4));
 
 		System.out.println(grafo.toString_info());
-		Profundidade search = new Profundidade(grafo, jurere);
+		buscaEmProfundidade search = new buscaEmProfundidade(grafo, jurere);
 		System.out.println("Busca em Profundidade: \nOrdem de busca dos vértices partindo de Jurere: ");
 		for (Vertice v : grafo.vertices()) {
 			if (search.marcados(v))
@@ -38,11 +40,12 @@ public class Main {
 			System.out.println("Grafo conexo");
 		
 		System.out.println("----------------------------------------------------\n");
+		// Grafos Conexos
 		System.out.println("Exemplo de Grafo Conexo: ");
 		grafo.desconecta(cacupe, jurere);
 
 		System.out.println(grafo.toString_info());
-		search = new Profundidade(grafo, jurere);
+		search = new buscaEmProfundidade(grafo, jurere);
 		System.out.println("Busca em Profundidade: \nOrdem de busca dos vértices partindo de Jurere: ");
 		for (Vertice v : grafo.vertices()) {
 			if (search.marcados(v))
@@ -93,7 +96,7 @@ public class Main {
 		grafo.conecta(canasvieiras, ingleses, new Aresta(15));
 		
 		System.out.println(grafo.toString_info());
-		search = new Profundidade(grafo, aeroporto);
+		search = new buscaEmProfundidade(grafo, aeroporto);
 		System.out.println("Busca em Profundidade: \n Ordem dos vértices partindo de Aeroporto:");
 		for (Vertice v : grafo.vertices()) {
 			if (search.marcados(v))
@@ -111,7 +114,7 @@ public class Main {
 		grafo.desconecta(jurere, canasvieiras);
 		grafo.desconecta(trindade, agronomica);
 		System.out.println(grafo.toString_info());
-		search = new Profundidade(grafo, ingleses);
+		search = new buscaEmProfundidade(grafo, ingleses);
 		System.out.println("Busca em Profundidade: \n Ordem dos vértices partindo de Ingleses:");
 		for (Vertice v : grafo.vertices()) {
 			if (search.marcados(v))
@@ -125,12 +128,13 @@ public class Main {
 			System.out.println("Grafo conexo");
 		
 		System.out.println("----------------------------------------------------\n");
+		// Grafo Desconexo
 		System.out.println("Exemplo de Grafo Desconexo: ");
 		
 		grafo.desconecta(corregogrande, trindade);
 		grafo.desconecta(agronomica, cacupe);
 		System.out.println(grafo.toString_info());
-		search = new Profundidade(grafo, aeroporto);
+		search = new buscaEmProfundidade(grafo, aeroporto);
 		System.out.println("Busca em Profundidade: \n Ordem dos vértices partindo de Aeroporto:");
 		for (Vertice v : grafo.vertices()) {
 			if (search.marcados(v))

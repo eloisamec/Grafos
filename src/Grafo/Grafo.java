@@ -15,6 +15,7 @@ public class Grafo {
 		vertices = new ArrayList<Vertice>();
 	}
 
+	// Operações básicas em grafos
 	public void adicionaVertice(Vertice vertice) {
 		if (!vertices.contains(vertice)) {
 			vertices.add(vertice);
@@ -74,6 +75,7 @@ public class Grafo {
 		return v.getAdjacentes().size();
 	}
 
+	// Ações derivadas
 	private boolean isRegular() {
 
 		int grau = grau(vertices.get(0));
@@ -148,6 +150,7 @@ public class Grafo {
 		return false;
 	}
 	
+	// Métodos auxiliares
 	public String toString() {
 		return vertices.toString();
 	}
