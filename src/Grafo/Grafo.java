@@ -130,20 +130,21 @@ public class Grafo {
 	private boolean isArvore() {
 		Vertice v = umVertice();
 		visitadosArvore = new ArrayList<Vertice>();
-		return (isConexo() && !haCiclo(v, v, v));
+		return (isConexo() && !haCiclo(v, v));
 	}
 
-	private boolean haCiclo(Vertice v, Vertice vAtual, Vertice vAnterior) {
-		if (visitadosArvore.contains(vAtual))
-			return vAtual == v;
-		visitadosArvore.add(vAtual);
+	private boolean haCiclo(Vertice v, Vertice vAnterior) {
 		
+		if (visitadosArvore.contains(v))
+			return true;
+		
+		visitadosArvore.add(v);
 		for (Vertice vAdj : adjacentes(v)) {
 			if (vAdj != vAnterior)
-				if (haCiclo(v, vAdj, vAtual))
+				if (haCiclo(vAdj, v))
 					return true;
 		}
-		visitadosArvore.remove(vAnterior);
+			
 		return false;
 	}
 	
